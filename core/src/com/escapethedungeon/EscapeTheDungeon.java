@@ -197,7 +197,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		width = Gdx.app.getGraphics().getWidth();
 		height = Gdx.app.getGraphics().getHeight();
 		size = height / 7;
-		System.out.println(size*10);
+		//System.out.println(size*10);
 		horisontal_otstup = (width-size*10)/2;
 		vertical_otstup = 0;
 		if(horisontal_otstup < 0){
@@ -225,6 +225,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		inventory = new SpriteBatch();
 		font = new BitmapFont();
 		font.setColor(Color.RED);
+		font.getData().setScale(size/100);
 		is_hod = true;
 
 		border = new Texture("Рамка.png");
