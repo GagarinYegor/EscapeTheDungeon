@@ -225,7 +225,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		inventory = new SpriteBatch();
 		font = new BitmapFont();
 		font.setColor(Color.RED);
-		font.getData().setScale(size/100);
+		font.getData().setScale(size/80);
 		is_hod = true;
 
 		border = new Texture("Рамка.png");
@@ -242,7 +242,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		wall_down = new Texture("Стена снизу.png");
 		wall_left = new Texture("Стена слева.png");
 		floor = new Texture("Пол.png");
-		zombie = new Texture("Зомби вправо.png");
+		zombie = new Texture("Зомби.png");
 		mage_right = new Texture("Маг вправо.png");
 		mage_left = new Texture("Маг влево.png");
 		attack_btn_img = new Texture("Кнопка атаки.png");
