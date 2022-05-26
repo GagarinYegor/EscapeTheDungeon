@@ -26,7 +26,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		  up_border_x, up_border_y, down_border_x, down_border_y;
 	boolean menu_open, is_attack, is_hod;
 	public static final int SCR_WIDTH = 960, SCR_HEIGHT = 540;
-	public static final float  speed = 4;
+	public static final float  speed = 6;
 	OrthographicCamera camera;
 	SpriteBatch level_one, ending;
 	Texture wall_right, wall_up, wall_down, wall_left,
@@ -34,7 +34,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 			floor, zombie, mage_right, mage_left, attack_btn_img, activ_attack_btn_img, column,
 			corner_and_wall_down_right, corner_and_wall_up_right, corner_and_wall_down_left, corner_and_wall_up_left,
 			activ_lever, passiv_lever, space, closed_horizontal_door,open_horizontal_door, border,
-			waiting_btn_img, closed_vertical_door, open_vertical_door, end;
+			waiting_btn_img, closed_vertical_door, open_vertical_door, end, escape;
 	Cage [][] cages;
 	Zombie [] zombies;
 	Player player;
@@ -260,6 +260,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		closed_vertical_door = new Texture("Закрытые вертикальные двери.png");
 		open_vertical_door = new Texture("Открытые вертикальные двери.png");
 		end = new Texture("конец.jpg");
+		escape = new Texture("Выход.png");
 
 		camera_move_up = 0;
 		camera_move_down = 0;
@@ -1200,7 +1201,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		cages[26][30] = new Cage(26, 30, true, floor);
 		cages[26][31] = new Cage(26, 31, false, wall_down);
 
-		cages[27][0] = new Cage(27, 0, true, floor);
+		cages[27][0] = new Cage(27, 0, true, escape);
 		cages[27][1] = new Cage(27, 1,true, floor);
 		cages[27][2] = new Cage(27, 2,true, floor);
 		cages[27][3] = new Cage(27, 3,true, floor);
@@ -1663,12 +1664,10 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 			}
 			if (touch_x == 9 && touch_y == 1){ // Нажатие пропуска хода
 				hod(0, 0);
-				player.move(25, 0);
-				camera_move_right += size*25;
 				is_hod = true;
 			}
 		}
-		if (player.x == 27 && player.y == 1) menu_open = true;
+		if (player.x == 27 && player.y == 0) menu_open = true;
 
 		font.draw(level_one, "Hp: " + player.health + " / " + player.max_health + "\n" + "Lvl: " + lvl + "\n" + "Exp: " +
 				exp + "/" + max_exp + "\n" + "Damage: " + player.damage + "\n" + "Moves: " +
