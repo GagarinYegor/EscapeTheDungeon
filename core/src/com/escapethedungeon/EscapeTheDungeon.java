@@ -267,7 +267,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		camera_move_right = 0;
 		camera_move_left = 0;
 
-		zombies = new Zombie[16];
+		zombies = new Zombie[22];
 		zombies[0] = new Zombie(8, 8, zombie, size, horisontal_otstup, vertical_otstup);
 		zombies[1] = new Zombie(7, 1, zombie, size, horisontal_otstup, vertical_otstup);
 		zombies[2] = new Zombie(14, 2, zombie, size, horisontal_otstup, vertical_otstup);
@@ -284,13 +284,19 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		zombies[13] = new Zombie(21, 18, zombie, size, horisontal_otstup, vertical_otstup);
 		zombies[14] = new Zombie(1, 30, zombie, size, horisontal_otstup, vertical_otstup);
 		zombies[15] = new Zombie(18, 21, zombie, size, horisontal_otstup, vertical_otstup);
+		zombies[16] = new Zombie(30, 7, zombie, size, horisontal_otstup, vertical_otstup);
+		zombies[17] = new Zombie(27, 19, zombie, size, horisontal_otstup, vertical_otstup);
+		zombies[18] = new Zombie(27, 21, zombie, size, horisontal_otstup, vertical_otstup);
+		zombies[19] = new Zombie(27, 25, zombie, size, horisontal_otstup, vertical_otstup);
+		zombies[20] = new Zombie(27, 28, zombie, size, horisontal_otstup, vertical_otstup);
+		zombies[21] = new Zombie(30, 20, zombie, size, horisontal_otstup, vertical_otstup);
 
 		player = new Player(4,3, mage_right, size, 100, horisontal_otstup, vertical_otstup);
 
 		attack_btn = new Button(9, 2, attack_btn_img, size, horisontal_otstup, vertical_otstup);
 		waiting_btn = new Button(9, 1, waiting_btn_img, size, horisontal_otstup, vertical_otstup);
 
-		levers = new Lever[11];
+		levers = new Lever[18];
 		levers[0] = new Lever(8, 3, size, 4, 6, horisontal_otstup, vertical_otstup, true);
 		levers[1] = new Lever(7, 8, size, 18, 16, horisontal_otstup, vertical_otstup, true);
 		levers[2] = new Lever(4, 23, size, 23, 11, horisontal_otstup, vertical_otstup, false);
@@ -302,6 +308,13 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		levers[8] = new Lever(1, 29, size, 11, 17, horisontal_otstup, vertical_otstup, true);
 		levers[9] = new Lever(15, 27, size, 10, 20, horisontal_otstup, vertical_otstup, false);
 		levers[10] = new Lever(17, 24, size, 1, 21, horisontal_otstup, vertical_otstup, true);
+		levers[11] = new Lever(30, 15, size, 27, 17, horisontal_otstup, vertical_otstup, true);
+		levers[12] = new Lever(27, 30, size, 27, 5, horisontal_otstup, vertical_otstup, true);
+		levers[13] = new Lever(27, 30, size, 27, 5, horisontal_otstup, vertical_otstup, true);
+		levers[14] = new Lever(25, 30, size, 30, 19, horisontal_otstup, vertical_otstup, true);
+		levers[15] = new Lever(29, 20, size, 25, 22, horisontal_otstup, vertical_otstup, false);
+		levers[16] = new Lever(25, 20, size, 27, 27, horisontal_otstup, vertical_otstup, true);
+		levers[17] = new Lever(29, 30, size, 27, 23, horisontal_otstup, vertical_otstup, true);
 
 		cages = new Cage[32][32];
 		exp = 0;
@@ -1154,18 +1167,18 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		cages[25][16] = new Cage(25, 16, false, space);
 		cages[25][17] = new Cage(25, 17, false, wall_up);
 		cages[25][18] = new Cage(25, 18, true, floor);
-		cages[25][19] = new Cage(25, 19, true, floor);
-		cages[25][20] = new Cage(25, 20, true, floor);
-		cages[25][21] = new Cage(25, 21, true, floor);
-		cages[25][22] = new Cage(25, 22, true, floor);
-		cages[25][23] = new Cage(25, 23, true, floor);
-		cages[25][24] = new Cage(25, 24, true, floor);
-		cages[25][25] = new Cage(25, 25, true, floor);
-		cages[25][26] = new Cage(25, 26, true, floor);
-		cages[25][27] = new Cage(25, 27, true, floor);
-		cages[25][28] = new Cage(25, 28, true, floor);
-		cages[25][29] = new Cage(25, 29, true, floor);
-		cages[25][30] = new Cage(25, 30, true, floor);
+		cages[25][19] = new Cage(25, 19, false, column);
+		cages[25][20] = new Cage(25, 20, false, floor);
+		cages[25][21] = new Cage(25, 21, false, column);
+		cages[25][22] = new Cage(25, 22, false, closed_vertical_door);
+		cages[25][23] = new Cage(25, 23, false, column);
+		cages[25][24] = new Cage(25, 24, false, column);
+		cages[25][25] = new Cage(25, 25, false, column);
+		cages[25][26] = new Cage(25, 26, false, column);
+		cages[25][27] = new Cage(25, 27, false, column);
+		cages[25][28] = new Cage(25, 28, false, column);
+		cages[25][29] = new Cage(25, 29, false, column);
+		cages[25][30] = new Cage(25, 30, false, floor);
 		cages[25][31] = new Cage(25, 31, false, wall_down);
 
 		cages[26][0] = new Cage(26, 0, false, wall_up);
@@ -1187,18 +1200,18 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		cages[26][16] = new Cage(26, 16, false, wall_right);
 		cages[26][17] = new Cage(26, 17, false, corner_and_wall_up_right);
 		cages[26][18] = new Cage(26, 18, true, floor);
-		cages[26][19] = new Cage(26, 19, true, floor);
-		cages[26][20] = new Cage(26, 20, true, floor);
-		cages[26][21] = new Cage(26, 21, true, floor);
+		cages[26][19] = new Cage(26, 19, false, column);
+		cages[26][20] = new Cage(26, 20, false, column);
+		cages[26][21] = new Cage(26, 21, false, column);
 		cages[26][22] = new Cage(26, 22, true, floor);
-		cages[26][23] = new Cage(26, 23, true, floor);
+		cages[26][23] = new Cage(26, 23, false, column);
 		cages[26][24] = new Cage(26, 24, true, floor);
 		cages[26][25] = new Cage(26, 25, true, floor);
 		cages[26][26] = new Cage(26, 26, true, floor);
-		cages[26][27] = new Cage(26, 27, true, floor);
+		cages[26][27] = new Cage(26, 27, false, column);
 		cages[26][28] = new Cage(26, 28, true, floor);
-		cages[26][29] = new Cage(26, 29, true, floor);
-		cages[26][30] = new Cage(26, 30, true, floor);
+		cages[26][29] = new Cage(26, 29, false, column);
+		cages[26][30] = new Cage(26, 30, false, column);
 		cages[26][31] = new Cage(26, 31, false, wall_down);
 
 		cages[27][0] = new Cage(27, 0, true, escape);
@@ -1206,7 +1219,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		cages[27][2] = new Cage(27, 2,true, floor);
 		cages[27][3] = new Cage(27, 3,true, floor);
 		cages[27][4] = new Cage(27, 4,true, floor);
-		cages[27][5] = new Cage(27, 5,true, floor);
+		cages[27][5] = new Cage(27, 5,false, closed_horizontal_door);
 		cages[27][6] = new Cage(27, 6,true, floor);
 		cages[27][7] = new Cage(27, 7, true, floor);
 		cages[27][8] = new Cage(27, 8, true, floor);
@@ -1218,20 +1231,20 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		cages[27][14] = new Cage(27, 14, true, floor);
 		cages[27][15] = new Cage(27, 15, true, floor);
 		cages[27][16] = new Cage(27, 16, true, floor);
-		cages[27][17] = new Cage(27, 17, true, floor);
+		cages[27][17] = new Cage(27, 17, false, closed_horizontal_door);
 		cages[27][18] = new Cage(27, 18, true, floor);
 		cages[27][19] = new Cage(27, 19, true, floor);
-		cages[27][20] = new Cage(27, 20, true, floor);
+		cages[27][20] = new Cage(27, 20, false, column);
 		cages[27][21] = new Cage(27, 21, true, floor);
 		cages[27][22] = new Cage(27, 22, true, floor);
-		cages[27][23] = new Cage(27, 23, true, floor);
+		cages[27][23] = new Cage(27, 23, false, closed_horizontal_door);
 		cages[27][24] = new Cage(27, 24, true, floor);
 		cages[27][25] = new Cage(27, 25, true, floor);
 		cages[27][26] = new Cage(27, 26, true, floor);
-		cages[27][27] = new Cage(27, 27, true, floor);
+		cages[27][27] = new Cage(27, 27, false, closed_horizontal_door);
 		cages[27][28] = new Cage(27, 28, true, floor);
 		cages[27][29] = new Cage(27, 29, true, floor);
-		cages[27][30] = new Cage(27, 30, true, floor);
+		cages[27][30] = new Cage(27, 30, false, floor);
 		cages[27][31] = new Cage(27, 31, false, wall_down);
 
 		cages[28][0] = new Cage(28, 0, false, wall_up);
@@ -1253,18 +1266,18 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		cages[28][16] = new Cage(28, 16, false, wall_left);
 		cages[28][17] = new Cage(28, 17, false, corner_and_wall_up_left);
 		cages[28][18] = new Cage(28, 18, true, floor);
-		cages[28][19] = new Cage(28, 19, true, floor);
-		cages[28][20] = new Cage(28, 20, true, floor);
-		cages[28][21] = new Cage(28, 21, true, floor);
+		cages[28][19] = new Cage(28, 19, false, column);
+		cages[28][20] = new Cage(28, 20, false, column);
+		cages[28][21] = new Cage(28, 21, false, column);
 		cages[28][22] = new Cage(28, 22, true, floor);
-		cages[28][23] = new Cage(28, 23, true, floor);
+		cages[28][23] = new Cage(28, 23, false, column);
 		cages[28][24] = new Cage(28, 24, true, floor);
 		cages[28][25] = new Cage(28, 25, true, floor);
 		cages[28][26] = new Cage(28, 26, true, floor);
-		cages[28][27] = new Cage(28, 27, true, floor);
+		cages[28][27] = new Cage(28, 27, false, column);
 		cages[28][28] = new Cage(28, 28, true, floor);
-		cages[28][29] = new Cage(28, 29, true, floor);
-		cages[28][30] = new Cage(28, 30, true, floor);
+		cages[28][29] = new Cage(28, 29, false, column);
+		cages[28][30] = new Cage(28, 30, false, column);
 		cages[28][31] = new Cage(28, 31, false, wall_down);
 
 		cages[29][0] = new Cage(29, 0, false, corner_left_up);
@@ -1286,18 +1299,18 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		cages[29][16] = new Cage(29, 16, false, corner_right_down);
 		cages[29][17] = new Cage(29, 17, false, wall_up);
 		cages[29][18] = new Cage(29, 18, true, floor);
-		cages[29][19] = new Cage(29, 19, true, floor);
-		cages[29][20] = new Cage(29, 20, true, floor);
-		cages[29][21] = new Cage(29, 21, true, floor);
-		cages[29][22] = new Cage(29, 22, true, floor);
-		cages[29][23] = new Cage(29, 23, true, floor);
-		cages[29][24] = new Cage(29, 24, true, floor);
-		cages[29][25] = new Cage(29, 25, true, floor);
-		cages[29][26] = new Cage(29, 26, true, floor);
-		cages[29][27] = new Cage(29, 27, true, floor);
-		cages[29][28] = new Cage(29, 28, true, floor);
-		cages[29][29] = new Cage(29, 29, true, floor);
-		cages[29][30] = new Cage(29, 30, true, floor);
+		cages[29][19] = new Cage(29, 19, false, column);
+		cages[29][20] = new Cage(29, 20, false, floor);
+		cages[29][21] = new Cage(29, 21, false, column);
+		cages[29][22] = new Cage(29, 22, false, column);
+		cages[29][23] = new Cage(29, 23, false, column);
+		cages[29][24] = new Cage(29, 24, false, column);
+		cages[29][25] = new Cage(29, 25, false, column);
+		cages[29][26] = new Cage(29, 26, false, column);
+		cages[29][27] = new Cage(29, 27, false, column);
+		cages[29][28] = new Cage(29, 28, false, column);
+		cages[29][29] = new Cage(29, 29, false, column);
+		cages[29][30] = new Cage(29, 30, false, floor);
 		cages[29][31] = new Cage(29, 31, false, wall_down);
 
 		cages[30][0] = new Cage(30, 0, false, space);
@@ -1315,11 +1328,11 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		cages[30][12] = new Cage(30, 12, true, floor);
 		cages[30][13] = new Cage(30, 13, true, floor);
 		cages[30][14] = new Cage(30, 14, true, floor);
-		cages[30][15] = new Cage(30, 15, true, floor);
+		cages[30][15] = new Cage(30, 15, false, floor);
 		cages[30][16] = new Cage(30, 16, false, wall_down);
 		cages[30][17] = new Cage(30, 17, false, wall_up);
 		cages[30][18] = new Cage(30, 18, true, floor);
-		cages[30][19] = new Cage(30, 19, true, floor);
+		cages[30][19] = new Cage(30, 19, false, closed_horizontal_door);
 		cages[30][20] = new Cage(30, 20, true, floor);
 		cages[30][21] = new Cage(30, 21, true, floor);
 		cages[30][22] = new Cage(30, 22, true, floor);
