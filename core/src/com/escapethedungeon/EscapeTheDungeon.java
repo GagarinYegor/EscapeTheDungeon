@@ -200,16 +200,20 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		System.out.println(size*10);
 		horisontal_otstup = (width-size*10)/2;
 		vertical_otstup = 0;
+		if(horisontal_otstup < 0){
+			horisontal_otstup = 0;
+			size = width/10;
+			vertical_otstup = (height - 7*size)/2;
+		}
 		left_border_x = 0;
 		left_border_y = 0;
 		right_border_x = width-horisontal_otstup;
 		right_border_y = 0;
 		up_border_x = 0;
-		up_border_y = height;
+		up_border_y = height-vertical_otstup;
 		down_border_x = 0;
-		down_border_x = 0;
+		down_border_y = 0;
 		moves=0;
-
 		//music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
 		//music.setLooping(true);
 		//music.setVolume(1f);
@@ -1387,6 +1391,9 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		level_one.draw(border, left_border_x, left_border_y, horisontal_otstup, height);
 		level_one.draw(border, right_border_x, right_border_y, horisontal_otstup, height);
 
+		level_one.draw(border, up_border_x, up_border_y, width, vertical_otstup);
+		level_one.draw(border, down_border_x, down_border_y, width, vertical_otstup);
+
 		attack_btn.draw(level_one, size, speed, size, 2*size);
 		waiting_btn.draw(level_one, size, speed, size, size);
 
@@ -1657,7 +1664,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 
 		font.draw(level_one, "Hp: " + player.health + " / " + player.max_health + "\n" + "Lvl: " + lvl + "\n" + "Exp: " +
 				exp + "/" + max_exp + "\n" + "Damage: " + player.damage + "\n" + "Moves: " +
-				moves, attack_btn.real_x, attack_btn.real_y-3*size+height);
+				moves, attack_btn.real_x, attack_btn.real_y+4*size);
 		camera.update();
 		level_one.end();
 		if (menu_open){
