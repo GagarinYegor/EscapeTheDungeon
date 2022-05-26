@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,6 +18,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import java.util.logging.FileHandler;
+
 public class EscapeTheDungeon extends ApplicationAdapter {
 	int width, height, camera_move_right, camera_move_left, camera_move_up, camera_move_down, exp, max_exp, lvl, moves;
 	float size, horisontal_otstup, vertical_otstup, left_border_x, left_border_y, right_border_x, right_border_y,
@@ -25,20 +28,20 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 	public static final int SCR_WIDTH = 960, SCR_HEIGHT = 540;
 	public static final float  speed = 4;
 	OrthographicCamera camera;
-	SpriteBatch level_one, inventory;
+	SpriteBatch level_one, ending;
 	Texture wall_right, wall_up, wall_down, wall_left,
 			corner_right_up, corner_right_down, corner_left_up, corner_left_down,
 			floor, zombie, mage_right, mage_left, attack_btn_img, activ_attack_btn_img, column,
 			corner_and_wall_down_right, corner_and_wall_up_right, corner_and_wall_down_left, corner_and_wall_up_left,
 			activ_lever, passiv_lever, space, closed_horizontal_door,open_horizontal_door, border,
-			waiting_btn_img, closed_vertical_door, open_vertical_door;
+			waiting_btn_img, closed_vertical_door, open_vertical_door, end;
 	Cage [][] cages;
 	Zombie [] zombies;
 	Player player;
 	Button attack_btn, waiting_btn;
 	BitmapFont font;
 	Lever [] levers;
-	Music music;
+	Music music_sound;
 
 	boolean moveable(int x, int y){
 		if(cages[x][y].moveable) return true;
@@ -214,15 +217,15 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		down_border_x = 0;
 		down_border_y = 0;
 		moves=0;
-		//music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
-		//music.setLooping(true);
-		//music.setVolume(1f);
-		//music.play();
+		//music_sound = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+		//music_sound.setLooping(true);
+		//music_sound.setVolume(1f);
+		//music_sound.play();
 
 		camera = new OrthographicCamera(width, height);
 		camera.setToOrtho(false, width, height);
 		level_one = new SpriteBatch();
-		inventory = new SpriteBatch();
+		ending = new SpriteBatch();
 		font = new BitmapFont();
 		font.setColor(Color.RED);
 		font.getData().setScale(size/80);
@@ -256,6 +259,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		open_horizontal_door = new Texture("Открытые горизонтальные двери.png");
 		closed_vertical_door = new Texture("Закрытые вертикальные двери.png");
 		open_vertical_door = new Texture("Открытые вертикальные двери.png");
+		end = new Texture("конец.jpg");
 
 		camera_move_up = 0;
 		camera_move_down = 0;
@@ -1659,9 +1663,12 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 			}
 			if (touch_x == 9 && touch_y == 1){ // Нажатие пропуска хода
 				hod(0, 0);
+				player.move(25, 0);
+				camera_move_right += size*25;
 				is_hod = true;
 			}
 		}
+		if (player.x == 27 && player.y == 1) menu_open = true;
 
 		font.draw(level_one, "Hp: " + player.health + " / " + player.max_health + "\n" + "Lvl: " + lvl + "\n" + "Exp: " +
 				exp + "/" + max_exp + "\n" + "Damage: " + player.damage + "\n" + "Moves: " +
@@ -1669,8 +1676,13 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		camera.update();
 		level_one.end();
 		if (menu_open){
-			inventory.begin();
-			inventory.end();
+			ending.begin();
+			ending.draw(end, 0, 0, width, height);
+			font.getData().setScale(3f);
+			font.setColor(Color.WHITE);
+			font.draw(ending, "You finaly escaped the dungeon!" + "\n" + "You use " + moves + " moves!", 150, size*5);
+			music_sound.stop();
+			ending.end();
 		}
 
 		if (player.health<=0){
@@ -1695,6 +1707,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 	@Override
 	public void dispose () {
 		level_one.dispose();
+		ending.dispose();
 		wall_right.dispose();
 		wall_up.dispose();
 		wall_down.dispose();
@@ -1723,7 +1736,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		waiting_btn_img.dispose();
 		closed_vertical_door.dispose();
 		open_vertical_door.dispose();
-		music.stop();
-		music.dispose();
+		music_sound.stop();
+		music_sound.dispose();
 	}
 }
