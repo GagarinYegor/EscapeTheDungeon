@@ -41,7 +41,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 	Button attack_btn, waiting_btn;
 	BitmapFont font;
 	Lever [] levers;
-	Music music_sound;
+	Music music;
 
 	boolean moveable(int x, int y){
 		if(cages[x][y].moveable) return true;
@@ -217,10 +217,10 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		down_border_x = 0;
 		down_border_y = 0;
 		moves=0;
-		//music_sound = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
-		//music_sound.setLooping(true);
-		//music_sound.setVolume(1f);
-		//music_sound.play();
+		//music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+		//music.setLooping(true);
+		//music.setVolume(1f);
+		//music.play();
 
 		camera = new OrthographicCamera(width, height);
 		camera.setToOrtho(false, width, height);
@@ -1681,7 +1681,6 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 			font.getData().setScale(3f);
 			font.setColor(Color.WHITE);
 			font.draw(ending, "You finaly escaped the dungeon!" + "\n" + "You use " + moves + " moves!", 150, size*5);
-			music_sound.stop();
 			ending.end();
 		}
 
@@ -1736,7 +1735,6 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		waiting_btn_img.dispose();
 		closed_vertical_door.dispose();
 		open_vertical_door.dispose();
-		music_sound.stop();
-		music_sound.dispose();
+		music.dispose();
 	}
 }
