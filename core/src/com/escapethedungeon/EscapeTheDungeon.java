@@ -196,6 +196,34 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 	}
 
 	@Override
+	public void resize(int width, int height) {
+		camera = new OrthographicCamera(width, height);
+		camera.setToOrtho(false, width, height);
+		size = height / 7;
+		//System.out.println(size*10);
+		horisontal_otstup = (width-size*10)/2;
+		vertical_otstup = 0;
+		if(horisontal_otstup < 0){
+			horisontal_otstup = 0;
+			size = width/10;
+			vertical_otstup = (height - 7*size)/2;
+		}
+		left_border_x = 0;
+		left_border_y = 0;
+		right_border_x = width-horisontal_otstup;
+		right_border_y = 0;
+		up_border_x = 0;
+		up_border_y = height-vertical_otstup;
+		down_border_x = 0;
+		down_border_y = 0;
+
+		for (Zombie zombie:zombies) zombie.size = size;
+		player.size = size;
+		for (Lever lever:levers) lever.size = size;
+		camera.update();
+	}
+
+	@Override
 	public void create () {
 		width = Gdx.app.getGraphics().getWidth();
 		height = Gdx.app.getGraphics().getHeight();
@@ -222,8 +250,8 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		//music.setVolume(1f);
 		//music.play();
 
-		camera = new OrthographicCamera(width, height);
-		camera.setToOrtho(false, width, height);
+		//camera = new OrthographicCamera(width, height);
+		//camera.setToOrtho(false, width, height);
 		level_one = new SpriteBatch();
 		ending = new SpriteBatch();
 		font = new BitmapFont();
@@ -1676,6 +1704,7 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 				}
 			}
 			if (touch_x == 9 && touch_y == 1){ // Нажатие пропуска хода
+				//camera.lookAt(0,0,3600);
 				hod(0, 0);
 				is_hod = true;
 			}
