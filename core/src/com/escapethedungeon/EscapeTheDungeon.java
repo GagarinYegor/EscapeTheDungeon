@@ -250,8 +250,8 @@ public class EscapeTheDungeon extends ApplicationAdapter {
 		//music.setVolume(1f);
 		//music.play();
 
-		//camera = new OrthographicCamera(width, height);
-		//camera.setToOrtho(false, width, height);
+		camera = new OrthographicCamera(width, height);
+		camera.setToOrtho(false, width, height);
 		level_one = new SpriteBatch();
 		ending = new SpriteBatch();
 		font = new BitmapFont();
